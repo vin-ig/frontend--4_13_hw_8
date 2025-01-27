@@ -19,3 +19,123 @@ body {
     font-weight: bold;
 }
 
+main {
+    height: 100%;
+    background: linear-gradient(to right, #FFFFFB 50%, #F8F8FA 50% 100%);
+}
+
+.header {
+    padding: 40px 0 112px;
+    text-align: center;
+}
+
+.logo svg {
+    position: relative;
+    left: -2.51px
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 190px;
+}
+
+
+/* REGISTER */
+.register {
+    padding: 0 63px 0 85px;
+    box-sizing: border-box;
+}
+
+.register h1 {
+    font-size: 36px;
+    padding-bottom: 27px;
+}
+
+.register p {
+    font-size: 22px;
+    line-height: 27px;
+    color: #636363;
+    padding-bottom: 75px;
+}
+
+.form {
+    padding-bottom: 44px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+}
+
+.form-item span {
+    font-size: 16px;
+    color: #C6C6C4;
+}
+
+.form-item input {
+    font-size: 20px;
+    color: #323232;
+    padding: 11px 0;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #C6C6C4;
+    width: 100%;
+}
+
+.agreement {
+    padding: 10px 0 40px;
+    font-size: 16px;
+    color: #636363;
+}
+
+.agreement * {
+    cursor: pointer;
+}
+
+.agreement input {
+    margin-right: 10px;
+}
+
+#register-button {
+    display: block;
+    width: 210px;
+    height: 70px;
+    border: 0;
+    border-radius: 9999px;
+    background: #DD3142;
+    font-size: 20px;
+    color: white;
+    box-sizing: border-box;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+#register-button:hover {
+    box-shadow: 0 0 10px 5px lightgray;
+}
+
+.has-account {
+    justify-self: center;
+    font-size: 16px;
+    line-height: 27px;
+    color: #636363;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+
+.has-account:hover {
+    border-color: inherit;
+}
+
+
+/* MAIN-IMAGE */
+.main-image img {
+    max-width: 100%;
+    padding: 76px 0 0 11px;
+}
