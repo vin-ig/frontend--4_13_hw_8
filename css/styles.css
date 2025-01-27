@@ -98,11 +98,15 @@ main {
     cursor: pointer;
 }
 
+.agreement label {
+    border-bottom: 1px solid transparent;
+}
+
 .agreement input {
     margin-right: 10px;
 }
 
-#register-button {
+.register-button {
     display: block;
     width: 210px;
     height: 70px;
@@ -116,7 +120,7 @@ main {
     cursor: pointer;
 }
 
-#register-button:hover {
+.register-button:hover {
     box-shadow: 0 0 10px 5px lightgray;
 }
 
