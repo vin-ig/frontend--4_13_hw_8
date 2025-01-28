@@ -26,14 +26,21 @@ window.onload = () => {
     }
 
     registerButton.onclick = (event) => {
+        let errors = []
         for (let input of formElement.getElementsByTagName('input')) {
             if (input.type !== 'checkbox' && !input.value) {
                 highlightInvalidField(input)
-                return alert(`Заполните поле "${input.parentElement.previousElementSibling.innerText}"`)
+                errors.push(`    - ${input.parentElement.previousElementSibling.innerText}`)
             } else {
                 highlightInvalidField(input, false)
             }
         }
+
+        if (errors.length !== 0) {
+            alert(`Заполните поля:\n` + errors.join('\n'))
+            return
+        }
+
         if (passwordInput.value.length < 8) {
             highlightInvalidField(passwordInput)
             return alert('Пароль должен содержать не менее 8 символов!')
