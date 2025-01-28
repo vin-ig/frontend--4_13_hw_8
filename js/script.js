@@ -8,6 +8,8 @@ window.onload = () => {
     const registerButton = document.getElementById('register-button')
     const hasAccountCheck = document.getElementById('has-account')
     const formElement = document.getElementById('signup-form')
+    const successSignup = document.getElementById('success-signup')
+    const successSignupOk = document.getElementById('success-signup-ok')
 
     fullNameInput.onkeydown = (event) => {
         if (!isNaN(parseInt(event.key))) {
@@ -60,9 +62,15 @@ window.onload = () => {
         } else {
             highlightInvalidField(agreementInput.parentElement, false)
         }
+
+        successSignup.classList.add('visible')
     }
 
-    // registerButton.onclick = () => {}
+    successSignupOk.onclick = (event) => {
+        successSignup.classList.remove('visible')
+        clearForm(formElement)
+        toSignInForm()
+    }
 }
 
 
@@ -72,4 +80,18 @@ function highlightInvalidField(element, invalid=true) {
     } else {
         element.style.borderColor = null
     }
+}
+
+function clearForm(form) {
+    for (let input of form.getElementsByTagName('input')) {
+        if (input.type !== 'checkbox') {
+            input.value = null
+        } else {
+            input.checked = false
+        }
+    }
+}
+
+function toSignInForm() {
+
 }
