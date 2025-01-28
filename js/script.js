@@ -6,7 +6,7 @@ window.onload = () => {
     const confirmPasswordInput = document.getElementById('confirm-password')
     const agreementInput = document.getElementById('agreement')
     const registerButton = document.getElementById('register-button')
-    const hasAccountCheck = document.getElementById('has-account')
+    const hasAccount = document.getElementById('has-account')
     const formElement = document.getElementById('signup-form')
     const successSignup = document.getElementById('success-signup')
     const successSignupOk = document.getElementById('success-signup-ok')
@@ -28,20 +28,8 @@ window.onload = () => {
     }
 
     registerButton.onclick = (event) => {
-        let errors = []
-        for (let input of formElement.getElementsByTagName('input')) {
-            if (input.type !== 'checkbox' && !input.value) {
-                highlightInvalidField(input)
-                errors.push(`    - ${input.parentElement.previousElementSibling.innerText}`)
-            } else {
-                highlightInvalidField(input, false)
-            }
-        }
-
-        if (errors.length !== 0) {
-            alert(`Заполните поля:\n` + errors.join('\n'))
-            return
-        }
+        let message = checkEmptyFields(formElement.getElementsByTagName('input'))
+        if (message) {return alert(message)}
 
         if (passwordInput.value.length < 8) {
             highlightInvalidField(passwordInput)
@@ -71,10 +59,48 @@ window.onload = () => {
         clearForm(formElement)
         toSignInForm()
     }
+
+    hasAccount.onclick = (event) => {
+        clearForm(formElement)
+        toSignInForm()
+    }
+
+    function toSignInForm() {
+        document.getElementsByTagName('h1')[0].innerText = 'Log in to the system';
+        [fullNameInput, emailInput, confirmPasswordInput, agreementInput].forEach((item) => {
+            item.parentElement.parentElement.style.display = 'none'
+        })
+        hasAccount.style.display = 'none'
+        registerButton.innerText = 'Sign In'
+        registerButton.onclick = (event) => {
+            let message = checkEmptyFields([usernameInput, passwordInput])
+            if (message) {
+                alert(message)
+            } else {
+                alert(`Добро пожаловать, ${usernameInput.value}!`)
+                clearForm(formElement)
+            }
+        }
+    }
 }
 
 
-function highlightInvalidField(element, invalid=true) {
+function checkEmptyFields(array) {
+    let errors = []
+
+    for (let input of array) {
+        if (input.type !== 'checkbox' && !input.value) {
+            highlightInvalidField(input)
+            errors.push(`    - ${input.parentElement.previousElementSibling.innerText}`)
+        } else {
+            highlightInvalidField(input, false)
+        }
+    }
+
+    return errors.length !== 0 ? `Заполните поля:\n` + errors.join('\n') : null
+}
+
+function highlightInvalidField(element, invalid = true) {
     if (invalid) {
         element.style.borderColor = '#DD3142'
     } else {
@@ -90,8 +116,4 @@ function clearForm(form) {
             input.checked = false
         }
     }
-}
-
-function toSignInForm() {
-
 }
